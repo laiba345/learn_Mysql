@@ -80,7 +80,6 @@ INSERT INTO `emp` VALUES(100, 'hk', '男', '2000-11-11', '2010-11-10 11:11:11', 
 
 修改表的相关操作
 ```
-
 # 修改表的操作练习
 ALTER TABLE emp ADD image VARCHAR(32) NOT NULL DEFAULT '' AFTER resume; 
 # 查看表的所有列
@@ -99,3 +98,14 @@ ALTER TABLE employee
 	
 DESC employee; 
 ```
+
+**修改表的相关操作**
+1. 添加某一列; ALTER + ADD
+2. 修改某一列; ALTER + MODIFY
+3. 删除某一列; ALTER + DROP
+4. 修改表名; RENAME
+5. 修改表里面的列属性; ALTER + CHANGE
+
+
+**插入操作的话,可以写具体的列也可以不写具体的列**
+

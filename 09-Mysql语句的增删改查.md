@@ -18,6 +18,7 @@ SELECT * FROM goods;
 ```
 
 **update语句; 更新**
+- 通常为update+set+where(来进行限制约束操作)
 ```
 -- 1. 将所有员工薪水修改为5000元[如果没有带where条件,会修改所有记录,因此要小心]
 UPDATE employee SET salary = 5000; 
@@ -34,6 +35,7 @@ SELECT * FROM employee;
 ```
 
 **delete删除语句;**
+- 通常表现为 delete+from+where
 ```
 -- 删除语句
 -- 1. 删除表中名称为 'kb'的记录
@@ -66,7 +68,7 @@ INSERT INTO student(id, name, chinese, english, math) VALUES(5, 'nn', 67, 68, 69
 INSERT INTO student(id, name, chinese, english, math) VALUES(6, 'jj', 19, 39, 99); 
 INSERT INTO student(id, name, chinese, english, math) VALUES(7, 'zz', 79, 99, 99); 
 
-DELETE FROM student; 
+DELETE FROM student; // 从某一张表当中删除; 
 
 SELECT * FROM student; 
 -- SELECT语句的使用1
@@ -74,7 +76,7 @@ SELECT * FROM student;
 SELECT * FROM student; 
 -- 2. 查询表中所有学生的姓名和对应的英语成绩
 SELECT `name`, english from student; 
--- 3. 过滤掉表中重复数据distinct
+-- 3. 过滤掉表中重复数据distinct; 使用distinct来表示唯一的字段操作; 
 SELECT DISTINCT english FROM student; 
 -- 4. 要查询的记录,每个字段都相同,才会去重
 SELECT DISTINCT `name`, english FROM student; 
@@ -84,7 +86,7 @@ SELECT DISTINCT `name`, english FROM student;
 SELECT `name`, (chinese+english+math) FROM student;
 -- 2. 在所有学生总分加10分的情况
 SELECT `name`, (chinese+english+math+10) FROM student;
--- 3. 使用别名表示学生分数
+-- 3. 使用别名表示学生分数; 别名设置 AS
 SELECT `name`, (chinese+english+math+10) AS total_score FROM student;
 
 -- SELECT语句的使用3
@@ -103,6 +105,7 @@ SELECT * FROM student WHERE english > chinese;
 -- 3. 查询总分大于200分并且数学成绩大于语文成绩的姓n的学生
 SELECT * FROM student WHERE (chinese + english + math) > 200 AND (math > chinese) AND `name` LIKE 'n%'; 
 
+LIKE表示一种模糊查询的操作; 在这个例子中，'n%' 使用了通配符 %，它匹配以字母 'n' 开头的任何文本。
 
 -- SELECT语句的使用5
 -- 1. 查询英语分数在80-90之间的学生成绩
@@ -214,12 +217,13 @@ SELECT AVG(sal), MAX(sal), deptno FROM emp GROUP BY deptno;
 -- 显示每个部门的每种岗位的平均工资和最低工资; 
 	-- 1. 显示每个部门的平均工资和最低工资
 	-- 2. 显示每个部门的每种岗位的平均工资和最低工资
+    -- 不仅是每个部门,每种岗位也需要纳入考量范围; 
 SELECT AVG(sal), MIN(sal), deptno, job FROM emp GROUP BY deptno, job; 
 -- 显示平均工资低于2000的部门号和它的平均工资 思路: 化繁为简, 各个击破
 	-- 1. 显示各个部门的平均工资和部门号
 	-- 2. 在1的结果基础上, 进行过滤, 保留AVG(sal) < 2000
 -- SELECT AVG(sal), deptno FROM emp GROUP BY deptno; 
 -- SELECT AVG(sal), deptno FROM emp GROUP BY deptno HAVING AVG(sal) < 2000; 
--- 取别名
+-- 取别名; 使用别名能更加简化相应的步骤及操作;
 SELECT AVG(sal) AS avg_sal, deptno FROM emp GROUP BY deptno HAVING avg_sal < 2000; 
 ```
