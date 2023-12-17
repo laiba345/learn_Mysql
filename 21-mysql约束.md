@@ -74,5 +74,4 @@ CREATE TABLE t12(
 INSERT INTO t12 VALUES(1, 'hk', 'man', 1500); 
 SELECT * FROM t12; 
 ```
-
-**mysql约束案例**
+**check()在括号里面写的是表达式**
